@@ -1,4 +1,4 @@
-# Learn Python Simple
+# Learn Python in a simple way
 
 A simple interactive Python tutorial covering variables, data types, loops, functions, and more.
 
