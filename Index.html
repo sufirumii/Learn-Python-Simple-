@@ -1,0 +1,939 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{display:flex;min-height:700px}
+.sb{width:230px;min-width:230px;border-right:0.5px solid var(--color-border-tertiary);padding:1rem 0;position:sticky;top:0;height:700px;overflow-y:auto}
+.sb-head{font-size:11px;font-weight:500;color:var(--color-text-tertiary);padding:10px 18px 5px;letter-spacing:0.07em;text-transform:uppercase}
+.sb a{display:block;padding:7px 18px;font-size:14px;color:var(--color-text-secondary);text-decoration:none;border-left:2px solid transparent;cursor:pointer;line-height:1.4}
+.sb a:hover{color:var(--color-text-primary);background:var(--color-background-secondary)}
+.sb a.on{color:var(--color-text-info);border-left:2px solid var(--color-text-info);background:var(--color-background-info)}
+.main{flex:1;padding:2.5rem 2.5rem 3rem;overflow-y:auto;max-height:700px}
+.topic{display:none}.topic.on{display:block}
+h1{font-size:26px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px;line-height:1.3}
+.tagline{font-size:15px;color:var(--color-text-secondary);margin-bottom:1.25rem;line-height:1.6}
+h3{font-size:17px;font-weight:500;color:var(--color-text-primary);margin:2rem 0 0.6rem}
+p{font-size:15px;line-height:1.75;color:var(--color-text-secondary);margin-bottom:0.8rem}
+.divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1.75rem 0}
+.cb{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:1.1rem 1.4rem;margin:0.75rem 0 0.5rem;position:relative;overflow:hidden}
+.cb pre{font-family:var(--font-mono);font-size:14px;color:var(--color-text-primary);white-space:pre;overflow-x:auto;line-height:1.7}
+.cb .tag{position:absolute;top:9px;right:12px;font-size:11px;color:var(--color-text-tertiary);font-family:var(--font-mono);letter-spacing:0.03em}
+.out{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-left:3px solid var(--color-text-info);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:0.85rem 1.1rem;margin:0 0 1.5rem;font-family:var(--font-mono);font-size:14px;color:var(--color-text-secondary);line-height:1.7}
+.out-lbl{font-size:12px;color:var(--color-text-tertiary);margin-bottom:5px;font-family:var(--font-sans);letter-spacing:0.04em;text-transform:uppercase}
+.note{background:var(--color-background-info);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:0.85rem 1.1rem;margin:1.25rem 0;font-size:14px;color:var(--color-text-info);line-height:1.7}
+.warn{background:var(--color-background-warning);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:0.85rem 1.1rem;margin:1.25rem 0;font-size:14px;color:var(--color-text-warning);line-height:1.7}
+.pill{display:inline-block;font-size:12px;padding:2px 10px;border-radius:20px;margin:0 3px 4px;font-family:var(--font-mono)}
+.pill-b{background:var(--color-background-info);color:var(--color-text-info)}
+.pill-g{background:var(--color-background-success);color:var(--color-text-success)}
+.pill-a{background:var(--color-background-warning);color:var(--color-text-warning)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin:0.75rem 0 1.5rem}
+.tbl th{text-align:left;padding:8px 12px;font-weight:500;color:var(--color-text-primary);border-bottom:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary)}
+.tbl td{padding:8px 12px;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);font-family:var(--font-mono);font-size:13px}
+.tbl tr:last-child td{border-bottom:none}
+.nav{display:flex;gap:10px;margin-top:2.5rem;padding-top:1.5rem;border-top:0.5px solid var(--color-border-tertiary)}
+.nav button{padding:8px 20px;font-size:14px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:transparent;color:var(--color-text-primary);cursor:pointer}
+.nav button:hover{background:var(--color-background-secondary)}
+.nav button.pri{background:var(--color-background-info);color:var(--color-text-info);border-color:transparent}
+.kw{color:#534AB7}.fn{color:#0F6E56}.st{color:#854F0B}.cm{color:#888780;font-style:italic}.nu{color:#185FA5}.bi{color:#993556}
+</style>
+
+<div class="wrap">
+<div class="sb">
+<div class="sb-head">Python Tutorial</div>
+<a onclick="go(0)" class="on">Variables</a>
+<a onclick="go(1)">Data Types</a>
+<a onclick="go(2)">Numbers</a>
+<a onclick="go(3)">Casting</a>
+<a onclick="go(4)">Strings</a>
+<a onclick="go(5)">Booleans</a>
+<a onclick="go(6)">Operators</a>
+<a onclick="go(7)">Arrays</a>
+<a onclick="go(8)">Lists</a>
+<a onclick="go(9)">Tuples</a>
+<a onclick="go(10)">Sets</a>
+<a onclick="go(11)">Dictionaries</a>
+<a onclick="go(12)">If...Else</a>
+<a onclick="go(13)">Match</a>
+<a onclick="go(14)">While Loops</a>
+<a onclick="go(15)">For Loops</a>
+<a onclick="go(16)">Range</a>
+<a onclick="go(17)">Functions</a>
+<a onclick="go(18)">Iterators</a>
+</div>
+<div class="main">
+
+<div class="topic on" id="t0">
+<h1>Python Variables</h1>
+<p class="tagline">A variable is a named container that holds a value. Python creates a variable automatically the moment you assign a value to it using the <code>=</code> sign. There is no need to declare the type first.</p>
+<div class="cb"><span class="tag">Python</span><pre>x = <span class="nu">10</span>
+name = <span class="st">"Ahmed"</span>
+price = <span class="nu">99.5</span>
+is_active = <span class="kw">True</span>
+
+print(x)
+print(name)
+print(price)
+print(is_active)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>10<br>Ahmed<br>99.5<br>True</div>
+
+<h3>Variable naming rules</h3>
+<p>Variable names must start with a letter or underscore. They cannot start with a number, and they cannot contain spaces. Python is case-sensitive, so <code>age</code> and <code>Age</code> are two completely different variables.</p>
+<div class="cb"><span class="tag">Python</span><pre>myName = <span class="st">"Sara"</span>       <span class="cm"># camelCase style</span>
+my_name = <span class="st">"Sara"</span>      <span class="cm"># snake_case style (preferred in Python)</span>
+_private = <span class="nu">42</span>         <span class="cm"># leading underscore is allowed</span>
+
+<span class="cm"># These would cause errors:</span>
+<span class="cm"># 2name = "x"   (starts with a number)</span>
+<span class="cm"># my-name = "x" (hyphens not allowed)</span></pre></div>
+
+<h3>Multiple assignment</h3>
+<p>You can assign values to several variables in a single line, or assign the same value to multiple variables at once.</p>
+<div class="cb"><span class="tag">Python</span><pre>x, y, z = <span class="st">"Apple"</span>, <span class="st">"Banana"</span>, <span class="st">"Cherry"</span>
+print(x)   <span class="cm"># Apple</span>
+print(y)   <span class="cm"># Banana</span>
+print(z)   <span class="cm"># Cherry</span>
+
+a = b = c = <span class="nu">100</span>
+print(a, b, c)   <span class="cm"># 100 100 100</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>Apple<br>Banana<br>Cherry<br>100 100 100</div>
+
+<h3>Global vs local variables</h3>
+<p>A variable created inside a function is local to that function. A variable created outside is global and can be read anywhere. Use the <code>global</code> keyword to modify a global variable from inside a function.</p>
+<div class="cb"><span class="tag">Python</span><pre>count = <span class="nu">0</span>   <span class="cm"># global variable</span>
+
+<span class="kw">def</span> <span class="fn">increment</span>():
+    <span class="kw">global</span> count
+    count += <span class="nu">1</span>
+
+increment()
+increment()
+print(count)   <span class="cm"># 2</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>2</div>
+<div class="note">Python convention: use <code>snake_case</code> for variable names (all lowercase with underscores). For example: <code>first_name</code>, <code>total_price</code>, <code>is_valid</code>.</div>
+<div class="nav"><button class="pri" onclick="go(1)">Next: Data Types &rarr;</button></div>
+</div>
+
+<div class="topic" id="t1">
+<h1>Python Data Types</h1>
+<p class="tagline">Every value in Python has a data type. The type determines what operations you can perform on the value. Python sets the type automatically when you assign a value.</p>
+<table class="tbl">
+<tr><th>Category</th><th>Type</th><th>Example</th></tr>
+<tr><td>Text</td><td>str</td><td>"Hello"</td></tr>
+<tr><td>Numeric</td><td>int, float, complex</td><td>10, 3.14, 2+3j</td></tr>
+<tr><td>Boolean</td><td>bool</td><td>True, False</td></tr>
+<tr><td>Sequence</td><td>list, tuple, range</td><td>[1,2,3], (1,2,3)</td></tr>
+<tr><td>Mapping</td><td>dict</td><td>{"key": "val"}</td></tr>
+<tr><td>Set</td><td>set, frozenset</td><td>{1, 2, 3}</td></tr>
+<tr><td>None</td><td>NoneType</td><td>None</td></tr>
+</table>
+
+<h3>Checking the type</h3>
+<p>Use the built-in <code>type()</code> function to find out what type a variable is.</p>
+<div class="cb"><span class="tag">Python</span><pre>x = <span class="nu">42</span>
+y = <span class="nu">3.14</span>
+z = <span class="st">"Hello"</span>
+a = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>]
+b = {<span class="st">"name"</span>: <span class="st">"Ali"</span>}
+c = <span class="kw">None</span>
+
+print(<span class="fn">type</span>(x))   <span class="cm"># &lt;class 'int'&gt;</span>
+print(<span class="fn">type</span>(y))   <span class="cm"># &lt;class 'float'&gt;</span>
+print(<span class="fn">type</span>(z))   <span class="cm"># &lt;class 'str'&gt;</span>
+print(<span class="fn">type</span>(a))   <span class="cm"># &lt;class 'list'&gt;</span>
+print(<span class="fn">type</span>(c))   <span class="cm"># &lt;class 'NoneType'&gt;</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>&lt;class 'int'&gt;<br>&lt;class 'float'&gt;<br>&lt;class 'str'&gt;<br>&lt;class 'list'&gt;<br>&lt;class 'NoneType'&gt;</div>
+
+<h3>Checking with isinstance()</h3>
+<p>The <code>isinstance()</code> function checks whether a variable belongs to a specific type and returns True or False. This is more reliable than comparing type() directly.</p>
+<div class="cb"><span class="tag">Python</span><pre>x = <span class="nu">10</span>
+print(<span class="fn">isinstance</span>(x, int))    <span class="cm"># True</span>
+print(<span class="fn">isinstance</span>(x, str))    <span class="cm"># False</span>
+print(<span class="fn">isinstance</span>(x, (int, float)))  <span class="cm"># True (check multiple)</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>True<br>False<br>True</div>
+<div class="note">Python uses duck typing: if it behaves like a list, Python treats it like one. The actual type matters less than the operations you can perform on the object.</div>
+<div class="nav"><button onclick="go(0)">&larr; Back</button><button class="pri" onclick="go(2)">Next: Numbers &rarr;</button></div>
+</div>
+
+<div class="topic" id="t2">
+<h1>Python Numbers</h1>
+<p class="tagline">Python has three built-in numeric types: <code>int</code> for whole numbers, <code>float</code> for decimal numbers, and <code>complex</code> for numbers with an imaginary part. There is no limit on how large an integer can be in Python.</p>
+
+<h3>Integer (int)</h3>
+<div class="cb"><span class="tag">Python</span><pre>a = <span class="nu">100</span>
+b = -<span class="nu">50</span>
+c = <span class="nu">1_000_000</span>    <span class="cm"># underscores for readability</span>
+print(c)           <span class="cm"># 1000000</span></pre></div>
+
+<h3>Float</h3>
+<div class="cb"><span class="tag">Python</span><pre>x = <span class="nu">3.14</span>
+y = -<span class="nu">2.5</span>
+z = <span class="nu">1.5e4</span>    <span class="cm"># scientific notation: 1.5 * 10^4 = 15000.0</span>
+print(z)      <span class="cm"># 15000.0</span></pre></div>
+
+<h3>Math operations</h3>
+<table class="tbl">
+<tr><th>Operator</th><th>Name</th><th>Example</th><th>Result</th></tr>
+<tr><td>+</td><td>Addition</td><td>10 + 3</td><td>13</td></tr>
+<tr><td>-</td><td>Subtraction</td><td>10 - 3</td><td>7</td></tr>
+<tr><td>*</td><td>Multiplication</td><td>10 * 3</td><td>30</td></tr>
+<tr><td>/</td><td>Division</td><td>10 / 3</td><td>3.333</td></tr>
+<tr><td>//</td><td>Floor division</td><td>10 // 3</td><td>3</td></tr>
+<tr><td>%</td><td>Modulus (remainder)</td><td>10 % 3</td><td>1</td></tr>
+<tr><td>**</td><td>Exponentiation</td><td>2 ** 8</td><td>256</td></tr>
+</table>
+
+<h3>The math module</h3>
+<p>For advanced math, import the <code>math</code> module. It gives you functions like square root, rounding, and trigonometry.</p>
+<div class="cb"><span class="tag">Python</span><pre><span class="kw">import</span> math
+
+print(math.sqrt(<span class="nu">25</span>))      <span class="cm"># 5.0</span>
+print(math.ceil(<span class="nu">4.2</span>))     <span class="cm"># 5  (round up)</span>
+print(math.floor(<span class="nu">4.9</span>))    <span class="cm"># 4  (round down)</span>
+print(math.pi)             <span class="cm"># 3.141592653...</span>
+print(math.pow(<span class="nu">2</span>, <span class="nu">10</span>))    <span class="cm"># 1024.0</span>
+print(math.abs(-<span class="nu">7</span>))       <span class="cm"># use abs() built-in: 7</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>5.0 &nbsp; 5 &nbsp; 4 &nbsp; 3.14159... &nbsp; 1024.0</div>
+<div class="nav"><button onclick="go(1)">&larr; Back</button><button class="pri" onclick="go(3)">Next: Casting &rarr;</button></div>
+</div>
+
+<div class="topic" id="t3">
+<h1>Python Casting</h1>
+<p class="tagline">Casting means converting a value from one type to another. Python provides built-in functions for this: <code>int()</code>, <code>float()</code>, <code>str()</code>, <code>bool()</code>, <code>list()</code>, and <code>tuple()</code>.</p>
+
+<h3>Converting to int</h3>
+<div class="cb"><span class="tag">Python</span><pre>print(<span class="fn">int</span>(<span class="nu">3.9</span>))    <span class="cm"># 3   (removes decimal, does NOT round)</span>
+print(<span class="fn">int</span>(<span class="nu">3.1</span>))    <span class="cm"># 3   (same result)</span>
+print(<span class="fn">int</span>(<span class="st">"42"</span>))   <span class="cm"># 42  (string to int)</span>
+print(<span class="fn">int</span>(<span class="kw">True</span>))   <span class="cm"># 1   (True = 1)</span>
+print(<span class="fn">int</span>(<span class="kw">False</span>))  <span class="cm"># 0   (False = 0)</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>3 &nbsp; 3 &nbsp; 42 &nbsp; 1 &nbsp; 0</div>
+
+<h3>Converting to float</h3>
+<div class="cb"><span class="tag">Python</span><pre>print(<span class="fn">float</span>(<span class="nu">5</span>))       <span class="cm"># 5.0</span>
+print(<span class="fn">float</span>(<span class="st">"3.14"</span>))   <span class="cm"># 3.14</span>
+print(<span class="fn">float</span>(<span class="kw">True</span>))    <span class="cm"># 1.0</span></pre></div>
+
+<h3>Converting to string</h3>
+<div class="cb"><span class="tag">Python</span><pre>print(<span class="fn">str</span>(<span class="nu">100</span>))      <span class="cm"># "100"</span>
+print(<span class="fn">str</span>(<span class="nu">3.14</span>))    <span class="cm"># "3.14"</span>
+print(<span class="fn">str</span>(<span class="kw">True</span>))    <span class="cm"># "True"</span>
+
+<span class="cm"># Why this matters: you cannot add a number to a string directly</span>
+age = <span class="nu">25</span>
+print(<span class="st">"I am "</span> + <span class="fn">str</span>(age) + <span class="st">" years old."</span>)
+<span class="cm"># Better: use f-strings (covered in Strings section)</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>I am 25 years old.</div>
+
+<h3>Converting between collections</h3>
+<div class="cb"><span class="tag">Python</span><pre>my_list = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">2</span>, <span class="nu">1</span>]
+print(<span class="fn">tuple</span>(my_list))   <span class="cm"># (1, 2, 3, 2, 1)</span>
+print(<span class="fn">set</span>(my_list))     <span class="cm"># {1, 2, 3}  (removes duplicates)</span>
+print(<span class="fn">list</span>(<span class="st">"hello"</span>))    <span class="cm"># ['h','e','l','l','o']</span></pre></div>
+<div class="warn">Casting "hello" to int will raise a ValueError. Only cast a string to a number when you are sure the string contains a valid number.</div>
+<div class="nav"><button onclick="go(2)">&larr; Back</button><button class="pri" onclick="go(4)">Next: Strings &rarr;</button></div>
+</div>
+
+<div class="topic" id="t4">
+<h1>Python Strings</h1>
+<p class="tagline">A string is a sequence of characters enclosed in single or double quotes. Strings are immutable, meaning you cannot change an individual character in place.</p>
+
+<h3>Indexing and slicing</h3>
+<p>Characters are accessed by index starting at 0. Negative indexes count from the end. Slicing lets you extract a portion of the string using <code>[start:stop:step]</code>.</p>
+<div class="cb"><span class="tag">Python</span><pre>s = <span class="st">"Python"</span>
+print(s[<span class="nu">0</span>])       <span class="cm"># P  (first)</span>
+print(s[-<span class="nu">1</span>])      <span class="cm"># n  (last)</span>
+print(s[<span class="nu">2</span>:<span class="nu">5</span>])     <span class="cm"># tho</span>
+print(s[::<span class="nu">2</span>])     <span class="cm"># Pto  (every 2nd character)</span>
+print(s[::-<span class="nu">1</span>])    <span class="cm"># nohtyP  (reversed)</span>
+print(<span class="fn">len</span>(s))     <span class="cm"># 6</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>P &nbsp; n &nbsp; tho &nbsp; Pto &nbsp; nohtyP &nbsp; 6</div>
+
+<h3>Common string methods</h3>
+<div class="cb"><span class="tag">Python</span><pre>s = <span class="st">"  Hello, World!  "</span>
+
+print(s.strip())           <span class="cm"># "Hello, World!"</span>
+print(s.upper())           <span class="cm"># "  HELLO, WORLD!  "</span>
+print(s.lower())           <span class="cm"># "  hello, world!  "</span>
+print(s.replace(<span class="st">"World"</span>, <span class="st">"Python"</span>))
+print(s.strip().split(<span class="st">","</span>))  <span class="cm"># ['Hello', ' World!']</span>
+print(s.strip().startswith(<span class="st">"Hello"</span>))  <span class="cm"># True</span>
+print(s.strip().count(<span class="st">"l"</span>))  <span class="cm"># 3</span></pre></div>
+
+<h3>F-strings (recommended)</h3>
+<p>F-strings let you embed variables and expressions directly inside a string. Place an <code>f</code> before the opening quote and use curly braces <code>{}</code> for variables.</p>
+<div class="cb"><span class="tag">Python</span><pre>name = <span class="st">"Ahmed"</span>
+age = <span class="nu">28</span>
+city = <span class="st">"Srinagar"</span>
+
+print(<span class="st">f"My name is {name}. I am {age} years old."</span>)
+print(<span class="st">f"I live in {city.upper()}."</span>)
+print(<span class="st">f"Next year I will be {age + 1}."</span>)
+print(<span class="st">f"Pi is approximately {3.14159:.2f}"</span>)  <span class="cm"># format to 2 decimals</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>My name is Ahmed. I am 28 years old.<br>I live in SRINAGAR.<br>Next year I will be 29.<br>Pi is approximately 3.14</div>
+
+<h3>Multi-line strings</h3>
+<div class="cb"><span class="tag">Python</span><pre>message = <span class="st">"""Dear Ahmed,
+This is a multi-line string.
+It preserves line breaks."""</span>
+
+print(message)</pre></div>
+<div class="note">Strings have over 40 built-in methods. The most useful ones are: strip(), split(), join(), replace(), find(), upper(), lower(), startswith(), endswith(), and format().</div>
+<div class="nav"><button onclick="go(3)">&larr; Back</button><button class="pri" onclick="go(5)">Next: Booleans &rarr;</button></div>
+</div>
+
+<div class="topic" id="t5">
+<h1>Python Booleans</h1>
+<p class="tagline">A Boolean value is either <code>True</code> or <code>False</code>. Booleans are the result of comparisons and logical operations. They control the flow of your program through conditions and loops.</p>
+
+<h3>Comparison operators return booleans</h3>
+<div class="cb"><span class="tag">Python</span><pre>print(<span class="nu">10</span> > <span class="nu">5</span>)     <span class="cm"># True</span>
+print(<span class="nu">10</span> < <span class="nu">5</span>)     <span class="cm"># False</span>
+print(<span class="nu">10</span> == <span class="nu">10</span>)   <span class="cm"># True  (== checks equality)</span>
+print(<span class="nu">10</span> != <span class="nu">5</span>)    <span class="cm"># True  (!= checks inequality)</span>
+print(<span class="nu">10</span> >= <span class="nu">10</span>)   <span class="cm"># True</span>
+print(<span class="nu">5</span> <= <span class="nu">3</span>)     <span class="cm"># False</span></pre></div>
+
+<h3>Truthy and Falsy values</h3>
+<p>In Python, many values evaluate to False when used in a boolean context. These are called falsy values. Everything else is truthy.</p>
+<div class="cb"><span class="tag">Python</span><pre><span class="cm"># These all evaluate to False:</span>
+print(<span class="fn">bool</span>(<span class="nu">0</span>))          <span class="cm"># False</span>
+print(<span class="fn">bool</span>(<span class="st">""</span>))         <span class="cm"># False  (empty string)</span>
+print(<span class="fn">bool</span>([]))         <span class="cm"># False  (empty list)</span>
+print(<span class="fn">bool</span>({}))         <span class="cm"># False  (empty dict)</span>
+print(<span class="fn">bool</span>(<span class="kw">None</span>))       <span class="cm"># False</span>
+
+<span class="cm"># These all evaluate to True:</span>
+print(<span class="fn">bool</span>(<span class="nu">42</span>))         <span class="cm"># True</span>
+print(<span class="fn">bool</span>(<span class="st">"hello"</span>))   <span class="cm"># True</span>
+print(<span class="fn">bool</span>([<span class="nu">0</span>]))       <span class="cm"># True  (list with one item)</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>False False False False False<br>True True True</div>
+
+<h3>Logical operators</h3>
+<div class="cb"><span class="tag">Python</span><pre>a = <span class="kw">True</span>
+b = <span class="kw">False</span>
+
+print(a <span class="kw">and</span> b)   <span class="cm"># False  (both must be True)</span>
+print(a <span class="kw">or</span> b)    <span class="cm"># True   (at least one must be True)</span>
+print(<span class="kw">not</span> a)     <span class="cm"># False  (reverses the value)</span>
+
+<span class="cm"># Practical example</span>
+age = <span class="nu">20</span>
+has_id = <span class="kw">True</span>
+print(age >= <span class="nu">18</span> <span class="kw">and</span> has_id)   <span class="cm"># True</span></pre></div>
+<div class="note">Internally, <code>True</code> equals <code>1</code> and <code>False</code> equals <code>0</code>. You can even do arithmetic: <code>True + True</code> gives <code>2</code>. This is rarely needed, but good to know.</div>
+<div class="nav"><button onclick="go(4)">&larr; Back</button><button class="pri" onclick="go(6)">Next: Operators &rarr;</button></div>
+</div>
+
+<div class="topic" id="t6">
+<h1>Python Operators</h1>
+<p class="tagline">Operators perform operations on values and variables. Python groups them into several categories: arithmetic, comparison, logical, assignment, identity, membership, and bitwise.</p>
+
+<h3>Arithmetic operators</h3>
+<table class="tbl">
+<tr><th>Operator</th><th>Description</th><th>Example</th><th>Result</th></tr>
+<tr><td>+</td><td>Addition</td><td>7 + 3</td><td>10</td></tr>
+<tr><td>-</td><td>Subtraction</td><td>7 - 3</td><td>4</td></tr>
+<tr><td>*</td><td>Multiplication</td><td>7 * 3</td><td>21</td></tr>
+<tr><td>/</td><td>Division (float)</td><td>7 / 2</td><td>3.5</td></tr>
+<tr><td>//</td><td>Floor division (int)</td><td>7 // 2</td><td>3</td></tr>
+<tr><td>%</td><td>Modulus (remainder)</td><td>7 % 2</td><td>1</td></tr>
+<tr><td>**</td><td>Exponentiation</td><td>2 ** 10</td><td>1024</td></tr>
+</table>
+
+<h3>Assignment operators</h3>
+<div class="cb"><span class="tag">Python</span><pre>x = <span class="nu">10</span>
+x += <span class="nu">5</span>    <span class="cm"># x = x + 5  → 15</span>
+x -= <span class="nu">3</span>    <span class="cm"># x = x - 3  → 12</span>
+x *= <span class="nu">2</span>    <span class="cm"># x = x * 2  → 24</span>
+x //= <span class="nu">4</span>   <span class="cm"># x = x // 4 → 6</span>
+x **= <span class="nu">2</span>   <span class="cm"># x = x ** 2 → 36</span>
+print(x)   <span class="cm"># 36</span></pre></div>
+
+<h3>Identity and membership operators</h3>
+<div class="cb"><span class="tag">Python</span><pre><span class="cm"># Identity: checks if two variables point to the same object</span>
+a = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>]
+b = a
+c = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>]
+print(a <span class="kw">is</span> b)      <span class="cm"># True  (same object in memory)</span>
+print(a <span class="kw">is</span> c)      <span class="cm"># False (same content, different object)</span>
+print(a == c)       <span class="cm"># True  (== compares content)</span>
+
+<span class="cm"># Membership: checks if a value exists in a sequence</span>
+fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+print(<span class="st">"apple"</span> <span class="kw">in</span> fruits)       <span class="cm"># True</span>
+print(<span class="st">"mango"</span> <span class="kw">not in</span> fruits)   <span class="cm"># True</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>True False True True True</div>
+<div class="nav"><button onclick="go(5)">&larr; Back</button><button class="pri" onclick="go(7)">Next: Arrays &rarr;</button></div>
+</div>
+
+<div class="topic" id="t7">
+<h1>Python Arrays</h1>
+<p class="tagline">Python does not have a built-in array type. Lists serve as arrays in most situations. For large amounts of typed numerical data, the <code>array</code> module provides a more memory-efficient alternative that stores items of a single type.</p>
+
+<h3>Using the array module</h3>
+<div class="cb"><span class="tag">Python</span><pre><span class="kw">import</span> array
+
+<span class="cm"># Type codes: 'i' = int, 'f' = float, 'd' = double, 'b' = byte</span>
+nums = array.array(<span class="st">'i'</span>, [<span class="nu">10</span>, <span class="nu">20</span>, <span class="nu">30</span>, <span class="nu">40</span>, <span class="nu">50</span>])
+
+print(nums[<span class="nu">0</span>])     <span class="cm"># 10</span>
+print(nums[<span class="nu">2</span>])     <span class="cm"># 30</span>
+print(nums[-<span class="nu">1</span>])    <span class="cm"># 50 (last element)</span>
+print(<span class="fn">len</span>(nums))   <span class="cm"># 5</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>10 &nbsp; 30 &nbsp; 50 &nbsp; 5</div>
+
+<h3>Modifying arrays</h3>
+<div class="cb"><span class="tag">Python</span><pre>nums = array.array(<span class="st">'i'</span>, [<span class="nu">10</span>, <span class="nu">20</span>, <span class="nu">30</span>])
+
+nums.append(<span class="nu">40</span>)          <span class="cm"># Add one item to the end</span>
+nums.insert(<span class="nu">1</span>, <span class="nu">15</span>)       <span class="cm"># Insert 15 at index 1</span>
+nums.remove(<span class="nu">20</span>)          <span class="cm"># Remove first occurrence of 20</span>
+popped = nums.pop()      <span class="cm"># Remove and return last item</span>
+
+print(nums.tolist())     <span class="cm"># Convert to list for printing</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>[10, 15, 30]</div>
+
+<h3>Iterating over an array</h3>
+<div class="cb"><span class="tag">Python</span><pre>scores = array.array(<span class="st">'i'</span>, [<span class="nu">85</span>, <span class="nu">92</span>, <span class="nu">78</span>, <span class="nu">95</span>])
+
+<span class="kw">for</span> score <span class="kw">in</span> scores:
+    print(<span class="st">f"Score: {score}"</span>)
+
+print(<span class="fn">sum</span>(scores))   <span class="cm"># 350</span></pre></div>
+<div class="note">For most everyday Python programming, use a list instead of the array module. Use the array module when you need to process millions of numbers efficiently and memory usage matters.</div>
+<div class="nav"><button onclick="go(6)">&larr; Back</button><button class="pri" onclick="go(8)">Next: Lists &rarr;</button></div>
+</div>
+
+<div class="topic" id="t8">
+<h1>Python Lists</h1>
+<p class="tagline">Lists are ordered, changeable collections that allow duplicate values. They are one of the most commonly used data structures in Python. A list is created using square brackets.</p>
+
+<h3>Creating and accessing lists</h3>
+<div class="cb"><span class="tag">Python</span><pre>fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+mixed  = [<span class="nu">1</span>, <span class="st">"hello"</span>, <span class="nu">3.14</span>, <span class="kw">True</span>]   <span class="cm"># lists can mix types</span>
+
+print(fruits[<span class="nu">0</span>])      <span class="cm"># apple</span>
+print(fruits[-<span class="nu">1</span>])     <span class="cm"># cherry</span>
+print(fruits[<span class="nu">0</span>:<span class="nu">2</span>])   <span class="cm"># ['apple', 'banana']</span>
+print(<span class="fn">len</span>(fruits))    <span class="cm"># 3</span></pre></div>
+
+<h3>Modifying lists</h3>
+<div class="cb"><span class="tag">Python</span><pre>fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+
+fruits[<span class="nu">1</span>] = <span class="st">"kiwi"</span>        <span class="cm"># Change an item</span>
+fruits.append(<span class="st">"mango"</span>)   <span class="cm"># Add to end</span>
+fruits.insert(<span class="nu">0</span>, <span class="st">"fig"</span>)  <span class="cm"># Insert at position 0</span>
+fruits.remove(<span class="st">"apple"</span>)  <span class="cm"># Remove by value</span>
+last = fruits.pop()      <span class="cm"># Remove and return last item</span>
+fruits.sort()            <span class="cm"># Sort alphabetically</span>
+fruits.reverse()         <span class="cm"># Reverse the order</span>
+
+print(fruits)</pre></div>
+
+<h3>Useful list operations</h3>
+<div class="cb"><span class="tag">Python</span><pre>nums = [<span class="nu">3</span>, <span class="nu">1</span>, <span class="nu">4</span>, <span class="nu">1</span>, <span class="nu">5</span>, <span class="nu">9</span>, <span class="nu">2</span>]
+print(<span class="fn">min</span>(nums))     <span class="cm"># 1</span>
+print(<span class="fn">max</span>(nums))     <span class="cm"># 9</span>
+print(<span class="fn">sum</span>(nums))     <span class="cm"># 25</span>
+print(nums.count(<span class="nu">1</span>)) <span class="cm"># 2  (how many times 1 appears)</span>
+print(nums.index(<span class="nu">5</span>)) <span class="cm"># 4  (index of first 5)</span>
+
+<span class="cm"># Joining two lists</span>
+a = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>]
+b = [<span class="nu">4</span>, <span class="nu">5</span>, <span class="nu">6</span>]
+print(a + b)         <span class="cm"># [1, 2, 3, 4, 5, 6]</span></pre></div>
+
+<h3>List comprehension</h3>
+<p>A concise one-line way to create a new list by applying an expression to each item in an existing sequence, optionally filtering items with a condition.</p>
+<div class="cb"><span class="tag">Python</span><pre>numbers = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">4</span>, <span class="nu">5</span>, <span class="nu">6</span>]
+
+squares = [x**<span class="nu">2</span> <span class="kw">for</span> x <span class="kw">in</span> numbers]
+evens   = [x <span class="kw">for</span> x <span class="kw">in</span> numbers <span class="kw">if</span> x % <span class="nu">2</span> == <span class="nu">0</span>]
+doubled_evens = [x*<span class="nu">2</span> <span class="kw">for</span> x <span class="kw">in</span> numbers <span class="kw">if</span> x % <span class="nu">2</span> == <span class="nu">0</span>]
+
+print(squares)        <span class="cm"># [1, 4, 9, 16, 25, 36]</span>
+print(evens)          <span class="cm"># [2, 4, 6]</span>
+print(doubled_evens)  <span class="cm"># [4, 8, 12]</span></pre></div>
+<div class="nav"><button onclick="go(7)">&larr; Back</button><button class="pri" onclick="go(9)">Next: Tuples &rarr;</button></div>
+</div>
+
+<div class="topic" id="t9">
+<h1>Python Tuples</h1>
+<p class="tagline">Tuples are ordered and <strong>unchangeable</strong> (immutable) collections. Once created, you cannot add, remove, or change their items. They are written with round brackets and are faster than lists.</p>
+
+<h3>Creating and accessing tuples</h3>
+<div class="cb"><span class="tag">Python</span><pre>colors = (<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>)
+point  = (<span class="nu">34.08</span>, <span class="nu">74.79</span>)   <span class="cm"># lat, lon of Srinagar</span>
+single = (<span class="st">"only one"</span>,)     <span class="cm"># MUST have trailing comma for single item</span>
+
+print(colors[<span class="nu">0</span>])    <span class="cm"># red</span>
+print(colors[-<span class="nu">1</span>])   <span class="cm"># blue</span>
+print(colors[<span class="nu">1</span>:<span class="nu">3</span>])  <span class="cm"># ('green', 'blue')</span>
+print(<span class="fn">len</span>(colors))  <span class="cm"># 3</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>red &nbsp; blue &nbsp; ('green', 'blue') &nbsp; 3</div>
+
+<h3>Unpacking tuples</h3>
+<p>You can assign each value in a tuple to a separate variable in one line. This is called unpacking.</p>
+<div class="cb"><span class="tag">Python</span><pre>r, g, b = (<span class="nu">255</span>, <span class="nu">128</span>, <span class="nu">0</span>)   <span class="cm"># unpack into 3 variables</span>
+print(r)   <span class="cm"># 255</span>
+print(g)   <span class="cm"># 128</span>
+print(b)   <span class="cm"># 0</span>
+
+<span class="cm"># Swap two variables using tuple unpacking</span>
+x, y = <span class="nu">10</span>, <span class="nu">20</span>
+x, y = y, x
+print(x, y)   <span class="cm"># 20  10</span></pre></div>
+
+<h3>Tuple methods</h3>
+<div class="cb"><span class="tag">Python</span><pre>t = (<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">2</span>, <span class="nu">4</span>)
+print(t.count(<span class="nu">2</span>))    <span class="cm"># 3  (how many times 2 appears)</span>
+print(t.index(<span class="nu">3</span>))    <span class="cm"># 3  (index of first 3)</span>
+
+<span class="cm"># Convert tuple to list when you need to change it</span>
+temp = <span class="fn">list</span>(t)
+temp.append(<span class="nu">5</span>)
+t = <span class="fn">tuple</span>(temp)
+print(t)</pre></div>
+<div class="note">Use tuples when your data should not change: RGB colors, GPS coordinates, days of the week, function return values. Tuples are also slightly faster than lists to iterate.</div>
+<div class="nav"><button onclick="go(8)">&larr; Back</button><button class="pri" onclick="go(10)">Next: Sets &rarr;</button></div>
+</div>
+
+<div class="topic" id="t10">
+<h1>Python Sets</h1>
+<p class="tagline">Sets are unordered collections that contain only unique values. They do not allow duplicates and the order of items is not guaranteed. Sets are ideal for membership testing and mathematical set operations.</p>
+
+<h3>Creating sets and basic usage</h3>
+<div class="cb"><span class="tag">Python</span><pre>fruits = {<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>}
+
+print(<span class="st">"apple"</span> <span class="kw">in</span> fruits)     <span class="cm"># True</span>
+print(<span class="st">"mango"</span> <span class="kw">in</span> fruits)     <span class="cm"># False</span>
+
+<span class="cm"># Sets remove duplicates automatically</span>
+numbers = {<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">3</span>, <span class="nu">3</span>}
+print(numbers)   <span class="cm"># {1, 2, 3}</span>
+
+<span class="cm"># Remove duplicates from a list</span>
+names = [<span class="st">"Ali"</span>, <span class="st">"Sara"</span>, <span class="st">"Ali"</span>, <span class="st">"Omar"</span>, <span class="st">"Sara"</span>]
+print(<span class="fn">list</span>(<span class="fn">set</span>(names)))</pre></div>
+<div class="out"><div class="out-lbl">Output</div>True False {1, 2, 3}<br>['Ali', 'Sara', 'Omar']</div>
+
+<h3>Modifying sets</h3>
+<div class="cb"><span class="tag">Python</span><pre>s = {<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>}
+s.add(<span class="nu">4</span>)           <span class="cm"># Add one item</span>
+s.update([<span class="nu">5</span>, <span class="nu">6</span>])   <span class="cm"># Add multiple items</span>
+s.discard(<span class="nu">2</span>)       <span class="cm"># Remove (no error if not found)</span>
+s.remove(<span class="nu">3</span>)        <span class="cm"># Remove (raises error if not found)</span>
+print(s)            <span class="cm"># {1, 4, 5, 6}</span></pre></div>
+
+<h3>Set operations (mathematics)</h3>
+<div class="cb"><span class="tag">Python</span><pre>a = {<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">4</span>}
+b = {<span class="nu">3</span>, <span class="nu">4</span>, <span class="nu">5</span>, <span class="nu">6</span>}
+
+print(a | b)    <span class="cm"># Union:        {1, 2, 3, 4, 5, 6}</span>
+print(a & b)    <span class="cm"># Intersection: {3, 4}</span>
+print(a - b)    <span class="cm"># Difference:   {1, 2}  (in a but not b)</span>
+print(a ^ b)    <span class="cm"># Symmetric diff: {1, 2, 5, 6} (not in both)</span>
+print(a.issubset({<span class="nu">1</span>,<span class="nu">2</span>,<span class="nu">3</span>,<span class="nu">4</span>,<span class="nu">5</span>}))   <span class="cm"># True</span></pre></div>
+<div class="nav"><button onclick="go(9)">&larr; Back</button><button class="pri" onclick="go(11)">Next: Dictionaries &rarr;</button></div>
+</div>
+
+<div class="topic" id="t11">
+<h1>Python Dictionaries</h1>
+<p class="tagline">Dictionaries store data as key-value pairs. They are ordered (since Python 3.7), changeable, and do not allow duplicate keys. Keys must be immutable types like strings, numbers, or tuples.</p>
+
+<h3>Creating and accessing</h3>
+<div class="cb"><span class="tag">Python</span><pre>person = {
+    <span class="st">"name"</span>: <span class="st">"Ahmed"</span>,
+    <span class="st">"age"</span>: <span class="nu">30</span>,
+    <span class="st">"city"</span>: <span class="st">"Srinagar"</span>
+}
+
+print(person[<span class="st">"name"</span>])           <span class="cm"># Ahmed</span>
+print(person.get(<span class="st">"age"</span>))        <span class="cm"># 30</span>
+print(person.get(<span class="st">"email"</span>, <span class="st">"N/A"</span>))  <span class="cm"># N/A (default if missing)</span></pre></div>
+<div class="note">Always use <code>.get()</code> instead of <code>dict[key]</code> when the key might not exist. Square bracket access raises a <code>KeyError</code> if the key is missing; <code>.get()</code> returns <code>None</code> or a default value.</div>
+
+<h3>Modifying dictionaries</h3>
+<div class="cb"><span class="tag">Python</span><pre>person[<span class="st">"email"</span>] = <span class="st">"ahmed@mail.com"</span>  <span class="cm"># Add new key</span>
+person[<span class="st">"age"</span>] = <span class="nu">31</span>                  <span class="cm"># Update existing key</span>
+<span class="kw">del</span> person[<span class="st">"city"</span>]                  <span class="cm"># Delete a key</span>
+popped = person.pop(<span class="st">"email"</span>)       <span class="cm"># Remove and return</span>
+
+print(person)</pre></div>
+
+<h3>Looping through a dictionary</h3>
+<div class="cb"><span class="tag">Python</span><pre>student = {<span class="st">"math"</span>: <span class="nu">90</span>, <span class="st">"english"</span>: <span class="nu">85</span>, <span class="st">"science"</span>: <span class="nu">92</span>}
+
+<span class="kw">for</span> subject, score <span class="kw">in</span> student.items():
+    print(<span class="st">f"{subject}: {score}"</span>)
+
+print(student.keys())    <span class="cm"># dict_keys(['math', 'english', 'science'])</span>
+print(student.values())  <span class="cm"># dict_values([90, 85, 92])</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>math: 90<br>english: 85<br>science: 92</div>
+
+<h3>Nested dictionaries</h3>
+<div class="cb"><span class="tag">Python</span><pre>students = {
+    <span class="st">"Ali"</span>: {<span class="st">"age"</span>: <span class="nu">20</span>, <span class="st">"grade"</span>: <span class="st">"A"</span>},
+    <span class="st">"Sara"</span>: {<span class="st">"age"</span>: <span class="nu">22</span>, <span class="st">"grade"</span>: <span class="st">"B"</span>}
+}
+print(students[<span class="st">"Ali"</span>][<span class="st">"grade"</span>])   <span class="cm"># A</span></pre></div>
+<div class="nav"><button onclick="go(10)">&larr; Back</button><button class="pri" onclick="go(12)">Next: If...Else &rarr;</button></div>
+</div>
+
+<div class="topic" id="t12">
+<h1>Python If...Else</h1>
+<p class="tagline">Conditional statements let your program make decisions. Python uses <code>if</code>, <code>elif</code>, and <code>else</code>. Indentation (4 spaces) defines the code block — Python does not use curly braces.</p>
+
+<h3>Basic if...elif...else</h3>
+<div class="cb"><span class="tag">Python</span><pre>score = <span class="nu">75</span>
+
+<span class="kw">if</span> score >= <span class="nu">90</span>:
+    print(<span class="st">"Grade: A"</span>)
+<span class="kw">elif</span> score >= <span class="nu">75</span>:
+    print(<span class="st">"Grade: B"</span>)
+<span class="kw">elif</span> score >= <span class="nu">60</span>:
+    print(<span class="st">"Grade: C"</span>)
+<span class="kw">else</span>:
+    print(<span class="st">"Grade: F - Please revise."</span>)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>Grade: B</div>
+
+<h3>Compound conditions</h3>
+<div class="cb"><span class="tag">Python</span><pre>age = <span class="nu">20</span>
+has_id = <span class="kw">True</span>
+is_member = <span class="kw">False</span>
+
+<span class="kw">if</span> age >= <span class="nu">18</span> <span class="kw">and</span> has_id:
+    print(<span class="st">"Access granted"</span>)
+
+<span class="kw">if</span> is_member <span class="kw">or</span> age >= <span class="nu">21</span>:
+    print(<span class="st">"Eligible for discount"</span>)
+
+<span class="kw">if</span> <span class="kw">not</span> is_member:
+    print(<span class="st">"Please consider joining"</span>)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>Access granted<br>Eligible for discount<br>Please consider joining</div>
+
+<h3>Ternary (one-line) if</h3>
+<div class="cb"><span class="tag">Python</span><pre>age = <span class="nu">20</span>
+label = <span class="st">"adult"</span> <span class="kw">if</span> age >= <span class="nu">18</span> <span class="kw">else</span> <span class="st">"minor"</span>
+print(label)   <span class="cm"># adult</span>
+
+<span class="cm"># Useful for assigning default values</span>
+name = <span class="st">""</span>
+display = name <span class="kw">if</span> name <span class="kw">else</span> <span class="st">"Anonymous"</span>
+print(display)   <span class="cm"># Anonymous</span></pre></div>
+
+<h3>Nested if</h3>
+<div class="cb"><span class="tag">Python</span><pre>temp = <span class="nu">25</span>
+humidity = <span class="nu">80</span>
+
+<span class="kw">if</span> temp > <span class="nu">20</span>:
+    <span class="kw">if</span> humidity > <span class="nu">70</span>:
+        print(<span class="st">"Warm and humid"</span>)
+    <span class="kw">else</span>:
+        print(<span class="st">"Warm and dry"</span>)
+<span class="kw">else</span>:
+    print(<span class="st">"Cool weather"</span>)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>Warm and humid</div>
+<div class="nav"><button onclick="go(11)">&larr; Back</button><button class="pri" onclick="go(13)">Next: Match &rarr;</button></div>
+</div>
+
+<div class="topic" id="t13">
+<h1>Python Match</h1>
+<p class="tagline">The <code>match</code> statement was introduced in Python 3.10. It compares a value against a series of patterns and runs the matching block. The <code>case _:</code> is the default case that catches anything not matched above.</p>
+
+<h3>Basic match statement</h3>
+<div class="cb"><span class="tag">Python</span><pre>day = <span class="st">"Friday"</span>
+
+<span class="kw">match</span> day:
+    <span class="kw">case</span> <span class="st">"Monday"</span>:
+        print(<span class="st">"Start of the work week"</span>)
+    <span class="kw">case</span> <span class="st">"Friday"</span>:
+        print(<span class="st">"End of the work week"</span>)
+    <span class="kw">case</span> <span class="st">"Saturday"</span> | <span class="st">"Sunday"</span>:
+        print(<span class="st">"Weekend!"</span>)
+    <span class="kw">case</span> _:
+        print(<span class="st">"A regular weekday"</span>)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>End of the work week</div>
+
+<h3>Match with numbers</h3>
+<div class="cb"><span class="tag">Python</span><pre>http_code = <span class="nu">404</span>
+
+<span class="kw">match</span> http_code:
+    <span class="kw">case</span> <span class="nu">200</span>:
+        print(<span class="st">"OK - Request succeeded"</span>)
+    <span class="kw">case</span> <span class="nu">301</span> | <span class="nu">302</span>:
+        print(<span class="st">"Redirect"</span>)
+    <span class="kw">case</span> <span class="nu">404</span>:
+        print(<span class="st">"Not Found"</span>)
+    <span class="kw">case</span> <span class="nu">500</span>:
+        print(<span class="st">"Internal Server Error"</span>)
+    <span class="kw">case</span> _:
+        print(<span class="st">f"Unknown code: {http_code}"</span>)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>Not Found</div>
+
+<h3>Match with guard conditions</h3>
+<p>You can add an <code>if</code> condition (called a guard) to a case to add extra filtering logic.</p>
+<div class="cb"><span class="tag">Python</span><pre>age = <span class="nu">17</span>
+
+<span class="kw">match</span> age:
+    <span class="kw">case</span> n <span class="kw">if</span> n < <span class="nu">13</span>:
+        print(<span class="st">"Child"</span>)
+    <span class="kw">case</span> n <span class="kw">if</span> n < <span class="nu">18</span>:
+        print(<span class="st">"Teenager"</span>)
+    <span class="kw">case</span> n <span class="kw">if</span> n < <span class="nu">65</span>:
+        print(<span class="st">"Adult"</span>)
+    <span class="kw">case</span> _:
+        print(<span class="st">"Senior"</span>)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>Teenager</div>
+<div class="note">The <code>match</code> statement requires Python 3.10 or later. You can check your version by running <code>python --version</code> in your terminal.</div>
+<div class="nav"><button onclick="go(12)">&larr; Back</button><button class="pri" onclick="go(14)">Next: While Loops &rarr;</button></div>
+</div>
+
+<div class="topic" id="t14">
+<h1>Python While Loops</h1>
+<p class="tagline">A <code>while</code> loop runs a block of code repeatedly as long as a condition remains True. You are responsible for updating the condition inside the loop, or it will run forever (infinite loop).</p>
+
+<h3>Basic while loop</h3>
+<div class="cb"><span class="tag">Python</span><pre>i = <span class="nu">1</span>
+<span class="kw">while</span> i <= <span class="nu">5</span>:
+    print(<span class="st">f"Count: {i}"</span>)
+    i += <span class="nu">1</span>   <span class="cm"># Without this line, the loop runs forever</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>Count: 1<br>Count: 2<br>Count: 3<br>Count: 4<br>Count: 5</div>
+
+<h3>break, continue, and else</h3>
+<div class="cb"><span class="tag">Python</span><pre><span class="cm"># break: exit the loop immediately</span>
+i = <span class="nu">0</span>
+<span class="kw">while</span> <span class="kw">True</span>:
+    i += <span class="nu">1</span>
+    <span class="kw">if</span> i == <span class="nu">4</span>:
+        <span class="kw">break</span>
+print(<span class="st">f"Stopped at {i}"</span>)   <span class="cm"># Stopped at 4</span>
+
+<span class="cm"># continue: skip the rest of this iteration</span>
+i = <span class="nu">0</span>
+<span class="kw">while</span> i < <span class="nu">6</span>:
+    i += <span class="nu">1</span>
+    <span class="kw">if</span> i % <span class="nu">2</span> == <span class="nu">0</span>:
+        <span class="kw">continue</span>   <span class="cm"># skip even numbers</span>
+    print(i, end=<span class="st">" "</span>)   <span class="cm"># 1 3 5</span></pre></div>
+
+<h3>The else clause</h3>
+<p>An <code>else</code> block after a while loop runs once when the condition becomes False. It does NOT run if the loop was stopped with <code>break</code>.</p>
+<div class="cb"><span class="tag">Python</span><pre>attempts = <span class="nu">0</span>
+password = <span class="st">"secret"</span>
+guess = <span class="st">"wrong"</span>
+
+<span class="kw">while</span> attempts < <span class="nu">3</span>:
+    <span class="kw">if</span> guess == password:
+        print(<span class="st">"Access granted"</span>)
+        <span class="kw">break</span>
+    attempts += <span class="nu">1</span>
+<span class="kw">else</span>:
+    print(<span class="st">"Too many failed attempts."</span>)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>Too many failed attempts.</div>
+<div class="warn">Always make sure the while condition will eventually become False. Adding a counter or a break statement prevents accidental infinite loops.</div>
+<div class="nav"><button onclick="go(13)">&larr; Back</button><button class="pri" onclick="go(15)">Next: For Loops &rarr;</button></div>
+</div>
+
+<div class="topic" id="t15">
+<h1>Python For Loops</h1>
+<p class="tagline">A <code>for</code> loop iterates over any sequence: a list, tuple, string, dictionary, set, or range. Python handles the counter automatically — you do not need to manage an index variable.</p>
+
+<h3>Loop over a list and string</h3>
+<div class="cb"><span class="tag">Python</span><pre>fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+<span class="kw">for</span> fruit <span class="kw">in</span> fruits:
+    print(fruit)
+
+<span class="cm"># Loop over a string character by character</span>
+<span class="kw">for</span> ch <span class="kw">in</span> <span class="st">"Python"</span>:
+    print(ch, end=<span class="st">" "</span>)   <span class="cm"># P y t h o n</span></pre></div>
+
+<h3>enumerate() - index and value</h3>
+<div class="cb"><span class="tag">Python</span><pre>languages = [<span class="st">"Python"</span>, <span class="st">"Java"</span>, <span class="st">"C++"</span>]
+
+<span class="kw">for</span> index, lang <span class="kw">in</span> <span class="fn">enumerate</span>(languages, start=<span class="nu">1</span>):
+    print(<span class="st">f"{index}. {lang}"</span>)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>1. Python<br>2. Java<br>3. C++</div>
+
+<h3>Loop over a dictionary</h3>
+<div class="cb"><span class="tag">Python</span><pre>scores = {<span class="st">"Ali"</span>: <span class="nu">90</span>, <span class="st">"Sara"</span>: <span class="nu">85</span>, <span class="st">"Omar"</span>: <span class="nu">78</span>}
+
+<span class="kw">for</span> name, score <span class="kw">in</span> scores.items():
+    grade = <span class="st">"Pass"</span> <span class="kw">if</span> score >= <span class="nu">80</span> <span class="kw">else</span> <span class="st">"Fail"</span>
+    print(<span class="st">f"{name}: {score} ({grade})"</span>)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>Ali: 90 (Pass)<br>Sara: 85 (Pass)<br>Omar: 78 (Fail)</div>
+
+<h3>Nested for loops</h3>
+<div class="cb"><span class="tag">Python</span><pre><span class="cm"># Multiplication table (3x3)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">4</span>):
+    <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">4</span>):
+        print(<span class="st">f"{i*j:2}"</span>, end=<span class="st">" "</span>)
+    print()   <span class="cm"># new line after each row</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div> 1  2  3<br> 2  4  6<br> 3  6  9</div>
+<div class="nav"><button onclick="go(14)">&larr; Back</button><button class="pri" onclick="go(16)">Next: Range &rarr;</button></div>
+</div>
+
+<div class="topic" id="t16">
+<h1>Python Range</h1>
+<p class="tagline">The <code>range()</code> function generates a sequence of numbers. It takes up to three arguments: <code>range(start, stop, step)</code>. The stop value is always excluded. Range objects are memory-efficient — they do not store all numbers at once.</p>
+
+<h3>Syntax variations</h3>
+<div class="cb"><span class="tag">Python</span><pre><span class="cm"># range(stop) — starts at 0, step is 1</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">5</span>):
+    print(i, end=<span class="st">" "</span>)   <span class="cm"># 0 1 2 3 4</span>
+
+<span class="cm"># range(start, stop)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">6</span>):
+    print(i, end=<span class="st">" "</span>)   <span class="cm"># 1 2 3 4 5</span>
+
+<span class="cm"># range(start, stop, step)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">0</span>, <span class="nu">20</span>, <span class="nu">5</span>):
+    print(i, end=<span class="st">" "</span>)   <span class="cm"># 0 5 10 15</span>
+
+<span class="cm"># Counting backwards (negative step)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">10</span>, <span class="nu">0</span>, -<span class="nu">2</span>):
+    print(i, end=<span class="st">" "</span>)   <span class="cm"># 10 8 6 4 2</span></pre></div>
+
+<h3>Practical uses of range</h3>
+<div class="cb"><span class="tag">Python</span><pre><span class="cm"># Repeat something N times</span>
+<span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">3</span>):
+    print(<span class="st">"Hello!"</span>)
+
+<span class="cm"># Generate a list of numbers</span>
+squares = [i**<span class="nu">2</span> <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">6</span>)]
+print(squares)   <span class="cm"># [1, 4, 9, 16, 25]</span>
+
+<span class="cm"># Access list items by index</span>
+fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(fruits)):
+    print(<span class="st">f"Item {i}: {fruits[i]}"</span>)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>Hello!<br>Hello!<br>Hello!<br>[1, 4, 9, 16, 25]<br>Item 0: apple ...</div>
+
+<h3>Convert range to a list</h3>
+<div class="cb"><span class="tag">Python</span><pre>r = <span class="fn">list</span>(<span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">11</span>))
+print(r)            <span class="cm"># [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span>
+print(<span class="fn">sum</span>(r))      <span class="cm"># 55</span>
+print(<span class="fn">min</span>(r), <span class="fn">max</span>(r))  <span class="cm"># 1  10</span></pre></div>
+<div class="nav"><button onclick="go(15)">&larr; Back</button><button class="pri" onclick="go(17)">Next: Functions &rarr;</button></div>
+</div>
+
+<div class="topic" id="t17">
+<h1>Python Functions</h1>
+<p class="tagline">A function is a named, reusable block of code. Define it once with <code>def</code>, then call it as many times as needed. Functions make your code organised, readable, and easier to maintain.</p>
+
+<h3>Basic function with parameters and return</h3>
+<div class="cb"><span class="tag">Python</span><pre><span class="kw">def</span> <span class="fn">greet</span>(name):
+    <span class="kw">return</span> <span class="st">f"Hello, {name}!"</span>
+
+print(greet(<span class="st">"Ahmed"</span>))    <span class="cm"># Hello, Ahmed!</span>
+print(greet(<span class="st">"Sara"</span>))     <span class="cm"># Hello, Sara!</span></pre></div>
+
+<h3>Default parameter values</h3>
+<div class="cb"><span class="tag">Python</span><pre><span class="kw">def</span> <span class="fn">introduce</span>(name, language=<span class="st">"Python"</span>, level=<span class="st">"beginner"</span>):
+    print(<span class="st">f"{name} is learning {language} at {level} level."</span>)
+
+introduce(<span class="st">"Ahmed"</span>)
+introduce(<span class="st">"Sara"</span>, <span class="st">"JavaScript"</span>)
+introduce(<span class="st">"Omar"</span>, level=<span class="st">"advanced"</span>)  <span class="cm"># keyword argument</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>Ahmed is learning Python at beginner level.<br>Sara is learning JavaScript at beginner level.<br>Omar is learning Python at advanced level.</div>
+
+<h3>*args and **kwargs</h3>
+<p>Use <code>*args</code> to accept any number of positional arguments. Use <code>**kwargs</code> to accept any number of keyword arguments.</p>
+<div class="cb"><span class="tag">Python</span><pre><span class="kw">def</span> <span class="fn">total</span>(*numbers):
+    <span class="kw">return</span> <span class="fn">sum</span>(numbers)
+
+print(total(<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>))          <span class="cm"># 6</span>
+print(total(<span class="nu">10</span>, <span class="nu">20</span>, <span class="nu">30</span>, <span class="nu">40</span>))   <span class="cm"># 100</span>
+
+<span class="kw">def</span> <span class="fn">show_info</span>(**details):
+    <span class="kw">for</span> key, val <span class="kw">in</span> details.items():
+        print(<span class="st">f"  {key}: {val}"</span>)
+
+show_info(name=<span class="st">"Ahmed"</span>, city=<span class="st">"Srinagar"</span>, age=<span class="nu">28</span>)</pre></div>
+<div class="out"><div class="out-lbl">Output</div>6 &nbsp; 100<br>name: Ahmed<br>city: Srinagar<br>age: 28</div>
+
+<h3>Lambda functions</h3>
+<p>A lambda is a small anonymous function written in a single expression. Useful for short operations and passing functions as arguments.</p>
+<div class="cb"><span class="tag">Python</span><pre>square = <span class="kw">lambda</span> x: x ** <span class="nu">2</span>
+add    = <span class="kw">lambda</span> a, b: a + b
+
+print(square(<span class="nu">9</span>))    <span class="cm"># 81</span>
+print(add(<span class="nu">3</span>, <span class="nu">7</span>))    <span class="cm"># 10</span>
+
+<span class="cm"># Sort a list of tuples by second value</span>
+students = [(<span class="st">"Ali"</span>, <span class="nu">88</span>), (<span class="st">"Sara"</span>, <span class="nu">95</span>), (<span class="st">"Omar"</span>, <span class="nu">72</span>)]
+students.sort(key=<span class="kw">lambda</span> s: s[<span class="nu">1</span>], reverse=<span class="kw">True</span>)
+print(students)   <span class="cm"># [('Sara', 95), ('Ali', 88), ('Omar', 72)]</span></pre></div>
+<div class="nav"><button onclick="go(16)">&larr; Back</button><button class="pri" onclick="go(18)">Next: Iterators &rarr;</button></div>
+</div>
+
+<div class="topic" id="t18">
+<h1>Python Iterators</h1>
+<p class="tagline">An iterator is an object that returns items one at a time. In Python, any object you can loop over with <code>for</code> is iterable. Behind the scenes, the for loop is calling <code>iter()</code> and <code>next()</code> for you automatically.</p>
+
+<h3>iter() and next()</h3>
+<div class="cb"><span class="tag">Python</span><pre>fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>]
+it = <span class="fn">iter</span>(fruits)   <span class="cm"># create an iterator</span>
+
+print(<span class="fn">next</span>(it))   <span class="cm"># apple</span>
+print(<span class="fn">next</span>(it))   <span class="cm"># banana</span>
+print(<span class="fn">next</span>(it))   <span class="cm"># cherry</span>
+<span class="cm"># next(it) here would raise StopIteration</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>apple<br>banana<br>cherry</div>
+
+<h3>Iterating over strings</h3>
+<div class="cb"><span class="tag">Python</span><pre><span class="cm"># Strings are iterable too</span>
+word = <span class="st">"hello"</span>
+it = <span class="fn">iter</span>(word)
+print(<span class="fn">next</span>(it))   <span class="cm"># h</span>
+print(<span class="fn">next</span>(it))   <span class="cm"># e</span></pre></div>
+
+<h3>Build your own iterator class</h3>
+<p>To make a class iterable, define two special methods: <code>__iter__</code> returns the iterator object itself, and <code>__next__</code> returns the next value and raises <code>StopIteration</code> when done.</p>
+<div class="cb"><span class="tag">Python</span><pre><span class="kw">class</span> <span class="fn">EvenNumbers</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, limit):
+        self.limit = limit
+        self.current = <span class="nu">0</span>
+
+    <span class="kw">def</span> <span class="fn">__iter__</span>(self):
+        <span class="kw">return</span> self
+
+    <span class="kw">def</span> <span class="fn">__next__</span>(self):
+        self.current += <span class="nu">2</span>
+        <span class="kw">if</span> self.current > self.limit:
+            <span class="kw">raise</span> StopIteration
+        <span class="kw">return</span> self.current
+
+<span class="kw">for</span> n <span class="kw">in</span> EvenNumbers(<span class="nu">10</span>):
+    print(n, end=<span class="st">" "</span>)   <span class="cm"># 2 4 6 8 10</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>2 &nbsp; 4 &nbsp; 6 &nbsp; 8 &nbsp; 10</div>
+
+<h3>Generators (a simpler way to write iterators)</h3>
+<p>A generator function uses <code>yield</code> instead of <code>return</code>. Each call to <code>next()</code> resumes from where it left off. Generators are memory-efficient for large sequences.</p>
+<div class="cb"><span class="tag">Python</span><pre><span class="kw">def</span> <span class="fn">count_up</span>(limit):
+    i = <span class="nu">1</span>
+    <span class="kw">while</span> i <= limit:
+        <span class="kw">yield</span> i
+        i += <span class="nu">1</span>
+
+<span class="kw">for</span> num <span class="kw">in</span> count_up(<span class="nu">5</span>):
+    print(num, end=<span class="st">" "</span>)   <span class="cm"># 1 2 3 4 5</span>
+
+<span class="cm"># Generator expressions (like list comprehension but lazy)</span>
+gen = (x**<span class="nu">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="nu">6</span>))
+print(<span class="fn">list</span>(gen))   <span class="cm"># [1, 4, 9, 16, 25]</span></pre></div>
+<div class="out"><div class="out-lbl">Output</div>1 2 3 4 5<br>[1, 4, 9, 16, 25]</div>
+<div class="note">Every for loop in Python uses the iterator protocol behind the scenes. Understanding iterators also unlocks generators, which are one of Python's most powerful and memory-efficient features.</div>
+<div class="nav"><button onclick="go(17)">&larr; Back</button><button onclick="go(0)">Back to start</button></div>
+</div>
+
+</div>
+</div>
+<script>
+const links=document.querySelectorAll('.sb a');
+const topics=document.querySelectorAll('.topic');
+function go(n){
+  topics.forEach((t,i)=>t.classList.toggle('on',i===n));
+  links.forEach((a,i)=>a.classList.toggle('on',i===n));
+  document.querySelector('.main').scrollTop=0;
+}
+</script>
